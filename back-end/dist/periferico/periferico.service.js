@@ -5,28 +5,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PerifericoService = void 0;
 const common_1 = require("@nestjs/common");
+const periferico_schema_1 = require("./schema/periferico.schema");
+const mongoose_1 = require("mongoose");
+const mongoose_2 = require("@nestjs/mongoose");
 let PerifericoService = class PerifericoService {
+    constructor(perifericoModel) {
+        this.perifericoModel = perifericoModel;
+    }
     create(createPerifericoDto) {
-        return 'This action adds a new periferico';
+        const createPeriferico = new this.perifericoModel(createPerifericoDto);
+        return createPeriferico.save();
     }
     findAll() {
-        return `This action returns all periferico`;
+        return this.perifericoModel.find().exec();
     }
-    findOne(id) {
-        return `This action returns a #${id} periferico`;
+    findOne(nome) {
+        return this.perifericoModel.findOne({ nome: nome });
     }
-    update(id, updatePerifericoDto) {
-        return `This action updates a #${id} periferico`;
+    async update(nome, updatePerifericoDto) {
+        return await this.perifericoModel.findByIdAndUpdate({ nome: nome }, periferico_schema_1.Periferico, { new: true });
     }
-    remove(id) {
-        return `This action removes a #${id} periferico`;
+    async remove(nome) {
+        return await this.perifericoModel.findOneAndDelete({ nome: nome });
     }
 };
 exports.PerifericoService = PerifericoService;
 exports.PerifericoService = PerifericoService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, mongoose_2.InjectModel)(periferico_schema_1.Periferico.name)),
+    __metadata("design:paramtypes", [mongoose_1.Model])
 ], PerifericoService);
 //# sourceMappingURL=periferico.service.js.map

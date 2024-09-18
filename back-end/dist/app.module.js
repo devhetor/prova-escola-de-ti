@@ -12,12 +12,13 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const computador_module_1 = require("./computador/computador.module");
 const periferico_module_1 = require("./periferico/periferico.module");
+const mongoose_1 = require("@nestjs/mongoose");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [computador_module_1.ComputadorModule, periferico_module_1.PerifericoModule],
+        imports: [computador_module_1.ComputadorModule, periferico_module_1.PerifericoModule, mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/computador')],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

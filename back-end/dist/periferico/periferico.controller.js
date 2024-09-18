@@ -27,14 +27,14 @@ let PerifericoController = class PerifericoController {
     findAll() {
         return this.perifericoService.findAll();
     }
-    findOne(id) {
-        return this.perifericoService.findOne(+id);
+    findOne(nome) {
+        return this.perifericoService.findOne(nome);
     }
-    update(id, updatePerifericoDto) {
-        return this.perifericoService.update(+id, updatePerifericoDto);
+    update(nome, updatePerifericoDto) {
+        return this.perifericoService.update(nome, updatePerifericoDto);
     }
-    remove(id) {
-        return this.perifericoService.remove(+id);
+    remove(nome) {
+        return this.perifericoService.remove(nome);
     }
 };
 exports.PerifericoController = PerifericoController;
@@ -52,23 +52,23 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PerifericoController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(':nome'),
+    __param(0, (0, common_1.Param)('nome')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PerifericoController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(':nome'),
+    __param(0, (0, common_1.Param)('nome')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_periferico_dto_1.UpdatePerifericoDto]),
     __metadata("design:returntype", void 0)
 ], PerifericoController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(':nome'),
+    __param(0, (0, common_1.Param)('nome')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

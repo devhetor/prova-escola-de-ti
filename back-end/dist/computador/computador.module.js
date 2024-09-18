@@ -11,12 +11,13 @@ const common_1 = require("@nestjs/common");
 const computador_service_1 = require("./computador.service");
 const computador_controller_1 = require("./computador.controller");
 const mongoose_1 = require("@nestjs/mongoose");
+const computador_shcema_1 = require("./schema/computador.shcema");
 let ComputadorModule = class ComputadorModule {
 };
 exports.ComputadorModule = ComputadorModule;
 exports.ComputadorModule = ComputadorModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature()],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: computador_shcema_1.Computador.name, schema: computador_shcema_1.ComputadorSchema }])],
         controllers: [computador_controller_1.ComputadorController],
         providers: [computador_service_1.ComputadorService],
     })

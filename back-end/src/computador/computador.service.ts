@@ -9,24 +9,24 @@ import { Model } from 'mongoose';
 export class ComputadorService {
   constructor(@InjectModel(Computador.name) private ComputadorModel: Model<Computador>) { }
 
-  create(item: CreateComputadorDto): Promise<Computador> {
-    const createComputador = new this.ComputadorModel(item)
+  async create(computador: CreateComputadorDto): Promise<Computador> {
+    const createComputador = new this.ComputadorModel(computador)
     return createComputador.save();
   }
 
   findAll() {
-    return `This action returns all computador`;
+    return this.ComputadorModel.find().exec()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} computador`;
+  async findOne(nome: string): Promise<Computador> {
+    return await this.ComputadorModel.findOne({ nome: nome })
   }
 
-  update(id: number, updateComputadorDto: UpdateComputadorDto) {
-    return `This action updates a #${id} computador`;
+  async update(nome: string, computador: UpdateComputadorDto): Promise<Computador> {
+    return await this.ComputadorModel.findOneAndUpdate({ nome: nome }, computador, { new: true })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} computador`;
+  async remove(nome: string) {
+    return await this.ComputadorModel.findOneAndDelete({ nome: nome })
   }
 }

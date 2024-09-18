@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePerifericoDto } from './dto/create-periferico.dto';
 import { UpdatePerifericoDto } from './dto/update-periferico.dto';
+import { Periferico } from './schema/periferico.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class PerifericoService {
+
+  constructor(@InjectModel(Periferico.name) private perifericoModel: Model<Periferico>) { }
+
   create(createPerifericoDto: CreatePerifericoDto) {
-    return 'This action adds a new periferico';
+    const createPeriferico = new this.perifericoModel(createPerifericoDto);
+    return createPeriferico.save()
   }
 
-  findAll() {
-    return `This action returns all periferico`;
+  findAll(): Promise<Periferico[]> {
+    return this.perifericoModel.find().exec()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} periferico`;
+  findOne(nome: string): Promise<Periferico> {
+    return this.perifericoModel.findOne({ nome: nome })
   }
 
-  update(id: number, updatePerifericoDto: UpdatePerifericoDto) {
-    return `This action updates a #${id} periferico`;
+  async update(nome: string, updatePerifericoDto: UpdatePerifericoDto): Promise<Periferico> {
+    return await this.perifericoModel.findByIdAndUpdate({ nome: nome }, Periferico, { new: true })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} periferico`;
+  async remove(nome: string): Promise<Periferico> {
+    return await this.perifericoModel.findOneAndDelete({ nome: nome })
   }
 }

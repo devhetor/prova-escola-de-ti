@@ -10,11 +10,14 @@ exports.PerifericoModule = void 0;
 const common_1 = require("@nestjs/common");
 const periferico_service_1 = require("./periferico.service");
 const periferico_controller_1 = require("./periferico.controller");
+const mongoose_1 = require("@nestjs/mongoose");
+const periferico_schema_1 = require("./schema/periferico.schema");
 let PerifericoModule = class PerifericoModule {
 };
 exports.PerifericoModule = PerifericoModule;
 exports.PerifericoModule = PerifericoModule = __decorate([
     (0, common_1.Module)({
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: periferico_schema_1.Periferico.name, schema: periferico_schema_1.PerifericoSchema }])],
         controllers: [periferico_controller_1.PerifericoController],
         providers: [periferico_service_1.PerifericoService],
     })
