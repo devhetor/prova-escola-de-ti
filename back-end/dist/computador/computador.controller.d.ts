@@ -6,8 +6,12 @@ export declare class ComputadorController {
     private readonly computadorService;
     constructor(computadorService: ComputadorService);
     create(createComputadorDto: CreateComputadorDto): Promise<Computador>;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateComputadorDto: UpdateComputadorDto): string;
-    remove(id: string): string;
+    findAll(): Promise<(import("mongoose").Document<unknown, {}, Computador> & Computador & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
+    findOne(nome: string): Promise<Computador>;
+    update(nome: string, updateComputadorDto: UpdateComputadorDto): Promise<Computador>;
+    remove(name: string): Promise<import("mongoose").Document<unknown, {}, Computador> & Computador & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }

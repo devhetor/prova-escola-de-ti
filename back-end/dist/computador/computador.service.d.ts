@@ -5,9 +5,13 @@ import { Model } from 'mongoose';
 export declare class ComputadorService {
     private ComputadorModel;
     constructor(ComputadorModel: Model<Computador>);
-    create(item: CreateComputadorDto): Promise<Computador>;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateComputadorDto: UpdateComputadorDto): string;
-    remove(id: number): string;
+    create(computador: CreateComputadorDto): Promise<Computador>;
+    findAll(): Promise<(import("mongoose").Document<unknown, {}, Computador> & Computador & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
+    findOne(nome: string): Promise<Computador>;
+    update(nome: string, computador: UpdateComputadorDto): Promise<Computador>;
+    remove(nome: string): Promise<import("mongoose").Document<unknown, {}, Computador> & Computador & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }

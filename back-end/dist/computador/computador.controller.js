@@ -22,19 +22,24 @@ let ComputadorController = class ComputadorController {
         this.computadorService = computadorService;
     }
     async create(createComputadorDto) {
+        console.log("GET: " + new Date());
         return await this.computadorService.create(createComputadorDto);
     }
-    findAll() {
-        return this.computadorService.findAll();
+    async findAll() {
+        console.log("GET: " + new Date());
+        return await this.computadorService.findAll();
     }
-    findOne(id) {
-        return this.computadorService.findOne(+id);
+    findOne(nome) {
+        console.log("GET: " + new Date());
+        return this.computadorService.findOne(nome);
     }
-    update(id, updateComputadorDto) {
-        return this.computadorService.update(+id, updateComputadorDto);
+    update(nome, updateComputadorDto) {
+        console.log("GET: " + new Date());
+        return this.computadorService.update(nome, updateComputadorDto);
     }
-    remove(id) {
-        return this.computadorService.remove(+id);
+    remove(name) {
+        console.log("GET: " + new Date());
+        return this.computadorService.remove(name);
     }
 };
 exports.ComputadorController = ComputadorController;
@@ -49,26 +54,26 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ComputadorController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(':nome'),
+    __param(0, (0, common_1.Param)('nome')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ComputadorController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(':nome'),
+    __param(0, (0, common_1.Param)('nome')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_computador_dto_1.UpdateComputadorDto]),
     __metadata("design:returntype", void 0)
 ], ComputadorController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(':name'),
+    __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

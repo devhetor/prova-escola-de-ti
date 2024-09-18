@@ -9,27 +9,32 @@ export class ComputadorController {
   constructor(private readonly computadorService: ComputadorService) { }
 
   @Post()
-  async create(@Body() createComputadorDto: CreateComputadorDto): Promise<Computador> {
+  async create(@Body() createComputadorDto: CreateComputadorDto) {
+    console.log("GET: " + new Date())
     return await this.computadorService.create(createComputadorDto)
   }
 
   @Get()
-  findAll() {
-    return this.computadorService.findAll();
+  async findAll() {
+    console.log("GET: " + new Date())
+    return await this.computadorService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.computadorService.findOne(+id);
+  @Get(':nome')
+  findOne(@Param('nome') nome: string) {
+    console.log("GET: " + new Date())
+    return this.computadorService.findOne(nome);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComputadorDto: UpdateComputadorDto) {
-    return this.computadorService.update(+id, updateComputadorDto);
+  @Patch(':nome')
+  update(@Param('nome') nome: string, @Body() updateComputadorDto: UpdateComputadorDto) {
+    console.log("GET: " + new Date())
+    return this.computadorService.update(nome, updateComputadorDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.computadorService.remove(+id);
+  @Delete(':name')
+  remove(@Param('name') name: string) {
+    console.log("GET: " + new Date())
+    return this.computadorService.remove(name)
   }
 }

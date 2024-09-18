@@ -5,7 +5,7 @@ import { UpdatePerifericoDto } from './dto/update-periferico.dto';
 
 @Controller('periferico')
 export class PerifericoController {
-  constructor(private readonly perifericoService: PerifericoService) {}
+  constructor(private readonly perifericoService: PerifericoService) { }
 
   @Post()
   create(@Body() createPerifericoDto: CreatePerifericoDto) {
@@ -17,18 +17,18 @@ export class PerifericoController {
     return this.perifericoService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.perifericoService.findOne(+id);
+  @Get(':nome')
+  findOne(@Param('nome') nome: string) {
+    return this.perifericoService.findOne(nome);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePerifericoDto: UpdatePerifericoDto) {
-    return this.perifericoService.update(+id, updatePerifericoDto);
+  @Patch(':nome')
+  update(@Param('nome') nome: string, @Body() updatePerifericoDto: UpdatePerifericoDto) {
+    return this.perifericoService.update(nome, updatePerifericoDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.perifericoService.remove(+id);
+  @Delete(':nome')
+  remove(@Param('nome') nome: string) {
+    return this.perifericoService.remove(nome)
   }
 }

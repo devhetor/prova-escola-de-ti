@@ -21,21 +21,21 @@ let ComputadorService = class ComputadorService {
     constructor(ComputadorModel) {
         this.ComputadorModel = ComputadorModel;
     }
-    create(item) {
-        const createComputador = new this.ComputadorModel(item);
+    async create(computador) {
+        const createComputador = new this.ComputadorModel(computador);
         return createComputador.save();
     }
     findAll() {
-        return `This action returns all computador`;
+        return this.ComputadorModel.find().exec();
     }
-    findOne(id) {
-        return `This action returns a #${id} computador`;
+    async findOne(nome) {
+        return await this.ComputadorModel.findOne({ nome: nome });
     }
-    update(id, updateComputadorDto) {
-        return `This action updates a #${id} computador`;
+    async update(nome, computador) {
+        return await this.ComputadorModel.findOneAndUpdate({ nome: nome }, computador, { new: true });
     }
-    remove(id) {
-        return `This action removes a #${id} computador`;
+    async remove(nome) {
+        return await this.ComputadorModel.findOneAndDelete({ nome: nome });
     }
 };
 exports.ComputadorService = ComputadorService;
